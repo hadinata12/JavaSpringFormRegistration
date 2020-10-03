@@ -11,3 +11,16 @@ Url form
 
 Config Database
 1. WEB-INF/dispatcher-servlet.xml
+
+File view
+1. WEB-INF/jsp/index.jsp
+
+File controller
+1. src\java\app\controller\FormController.java
+
+File model
+1. src\java\app\model\User.java
+
+File DAO
+1. src\java\app\dao\RegistrationDao.java
+
