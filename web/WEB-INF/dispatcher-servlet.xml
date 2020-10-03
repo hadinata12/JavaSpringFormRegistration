@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+    
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+    
+    <!--
+    The index controller.
+    -->
+    
+    <mvc:annotation-driven/>
+    <context:annotation-config/>
+    <context:component-scan base-package="app.controller"/> 
+    
+    <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">    
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>    
+        <property name="url" value="jdbc:mysql://localhost:3306/db_registration"></property>    
+        <property name="username" value="root"></property>    
+        <property name="password" value="root"></property>    
+    </bean>   
+    
+    <bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">    
+        <property name="dataSource" ref="ds"></property>    
+    </bean>    
+    <bean id="dao" class="app.dao.RegistrationDao">    
+        <property name="template" ref="jt"></property>    
+    </bean> 
+    
+</beans>

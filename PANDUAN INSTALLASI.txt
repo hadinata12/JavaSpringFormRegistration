@@ -1,0 +1,13 @@
+
+Requirement
+1. Java 1.7
+2. Database MYSQL
+3. Spring Framework MVC V2
+4. Web Server Apache Tomcat
+5. Editor Netbeans IDE 7.0.1
+
+Url form
+1. http://localhost:8084/RegistrationForm/index
+
+Config Database
+1. WEB-INF/dispatcher-servlet.xml
